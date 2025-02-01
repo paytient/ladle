@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "declarationDir": "typings-for-build",
+    "outDir": "typings-for-build"
+  },
+  "include": ["lib/**/*", "src/**/*"],
+  "exclude": ["typings-for-build"]
+}

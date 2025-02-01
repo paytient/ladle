@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
+    "allowJs": true,
+    "checkJs": true,
+    "jsx": "react-jsx",
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "noEmit": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "paths": {
+      "virtual:generated-list": ["./packages/ladle/types/generated-list.d.ts"],
+      "@/*": ["./e2e/config-ts/src/to/*"]
+    }
+  },
+  "include": [
+    "packages/*/.ladle/*",
+    "packages/ladle/lib/app/window.d.ts",
+    "packages/*/lib/**/*",
+    "packages/*/src/**/*",
+    "e2e/*/.ladle/*",
+    "e2e/*/src/*",
+    "e2e/*/tests/*",
+    "type-tests/*"
+  ],
+  "exclude": ["packages/website/**", "packages/example/src/button.stories.js"]
+}
