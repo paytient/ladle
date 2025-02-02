@@ -36,6 +36,10 @@ export enum ControlType {
   Background = "background",
 }
 
+export type PackagesState = {
+  options: string[];
+};
+
 export type ControlState = {
   [key: string]: {
     name?: string;
@@ -63,6 +67,7 @@ export enum ActionType {
   UpdateControl = "update-control",
   UpdateControlIntialized = "update-control-initialized",
   UpdateHotkeys = "update-hotkeys",
+  UpdatePackage = "update-package",
 }
 
 export type GlobalAction =
@@ -110,6 +115,10 @@ export type GlobalAction =
   | {
       type: ActionType.UpdateControl;
       value: ControlState;
+    }
+  | {
+      type: ActionType.UpdatePackage;
+      value: string;
     };
 
 export type GlobalState = {
@@ -122,6 +131,7 @@ export type GlobalState = {
   control: ControlState;
   controlInitialized: boolean;
   width: number;
+  package: string;
   hotkeys: boolean;
 };
 
@@ -175,6 +185,7 @@ export type PluginOptions = {
 
 export type Config = {
   stories: string;
+  packages?: string | string[];
   defaultStory: string;
   storyOrder: StoryOrder;
   appendToHead: string;
@@ -204,10 +215,15 @@ export type Config = {
     a11y: string[];
     source: string[];
     darkMode: string[];
+    packages: string[];
   };
   onDevServerStart: (serverUrl: string) => void;
   i18n: { [key: string]: string };
   addons: {
+    packages: {
+      enabled: boolean;
+      state?: PackagesState;
+    };
     control: {
       enabled: boolean;
       defaultState: ControlState;
