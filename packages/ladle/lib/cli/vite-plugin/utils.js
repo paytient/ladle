@@ -14,7 +14,7 @@ export const detectDuplicateStoryNames = (entryData) => {
   const stories = {};
   Object.keys(entryData).forEach((entry) => {
     entryData[entry].stories.forEach((story) => {
-      if (stories.hasOwnProperty(story.storyId)) {
+      if (Object.prototype.hasOwnProperty.call(stories, story.storyId)) {
         throw Error(
           `
 There are two stories with the same ID ${story.storyId} as a result
