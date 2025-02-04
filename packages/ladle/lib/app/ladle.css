@@ -345,6 +345,44 @@ body {
   color: var(--ladle-color-accent);
 }
 
+.ladle-addons > ul > li > .packages-active {
+  color: var(--ladle-color-accent);
+}
+
+.ladle-packages-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ladle-packages-list button {
+  padding: 10px 20px;
+  background: #e9e6f5;
+  width: 300px;
+  border-width: 0;
+  cursor: pointer;
+}
+
+.ladle-selected-package {
+  width: 100vw;
+  padding: 10px;
+  background-color: #276ef1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: #fff;
+  text-transform: capitalize;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ladle-packages-list button:hover {
+  background: #d6b5f2;
+}
+
+.ladle-packages-list button:first-child {
+  margin-bottom: 5px;
+}
+
 .ladle-addons > ul > li > button:focus-visible {
   border: 2px solid var(--ladle-color-accent);
 }

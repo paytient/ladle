@@ -14,7 +14,7 @@ export const detectDuplicateStoryNames = (entryData) => {
   const stories = {};
   Object.keys(entryData).forEach((entry) => {
     entryData[entry].stories.forEach((story) => {
-      if (stories.hasOwnProperty(story.storyId)) {
+      if (Object.prototype.hasOwnProperty.call(stories, story.storyId)) {
         throw Error(
           `
 There are two stories with the same ID ${story.storyId} as a result
@@ -31,4 +31,15 @@ Story IDs need to be unique.
       }
     });
   });
+};
+
+/**
+ * @param input {string}
+ */
+export const sanitizeAndPascalCase = (input) => {
+  return input
+    .replace(/[^a-zA-Z0-9\-_\s]/g, "") // Keep letters, numbers, hyphens, and underscores
+    .split(/[-_\s]+/) // Split on hyphens, underscores, or spaces
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize first letter
+    .join(""); // Join into PascalCase
 };

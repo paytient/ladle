@@ -8,6 +8,7 @@ import { Button as RtlButton } from "./addons/rtl";
 import { Button as SourceButton } from "./addons/source";
 import { Button as LadleButton } from "./addons/ladle";
 import { Button as A11yButton } from "./addons/a11y";
+import { Button as PackagesButton } from "./addons/packages";
 import { Button as WidthButton } from "./addons/width";
 import config from "./get-config";
 
@@ -27,9 +28,13 @@ const AddonPanel = ({
   ) {
     return null;
   }
+
   return (
     <header role="banner" className="ladle-addons">
       <ul>
+        {config.addons.packages.enabled && (
+          <PackagesButton globalState={globalState} dispatch={dispatch} />
+        )}
         {config.addons.control.enabled &&
           Object.keys(globalState.control).length > 0 && (
             <ControlButton globalState={globalState} dispatch={dispatch} />

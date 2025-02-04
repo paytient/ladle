@@ -48,7 +48,7 @@ const TreeView = ({
   );
   React.useEffect(() => {
     setTree(getStoryTree(stories, story, allExpanded));
-  }, [stories.join(",")]);
+  }, [stories.join(","), story]);
 
   const [selectedItemId, setSelectedItemId] = React.useState<string | null>(
     tree.length ? tree[0].id : null,

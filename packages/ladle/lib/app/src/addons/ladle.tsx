@@ -16,6 +16,7 @@ const hotkeyLegends = {
   width: "Toggle width addon",
   rtl: "Toggle right-to-left mode",
   a11y: "Toggle accessibility addon",
+  packages: "Toggle packages addon",
   source: "Toggle story source addon",
 };
 

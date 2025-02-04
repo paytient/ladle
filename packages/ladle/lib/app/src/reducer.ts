@@ -39,6 +39,8 @@ const reducer = (state: GlobalState, action: GlobalAction): GlobalState => {
       return { ...state, controlInitialized: action.value };
     case ActionType.UpdateHotkeys:
       return { ...state, hotkeys: action.value };
+    case ActionType.UpdatePackage:
+      return { ...state, package: action.value };
     default:
       return state;
   }

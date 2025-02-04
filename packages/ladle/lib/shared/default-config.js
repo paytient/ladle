@@ -29,6 +29,7 @@ export default {
     rtl: ["r"],
     source: ["s"],
     a11y: ["a"],
+    packages: ["p"],
   },
   onDevServerStart: () => {
     return;
@@ -38,6 +39,9 @@ export default {
   },
   // enable/disable addons and their default state
   addons: {
+    packages: {
+      enabled: false,
+    },
     control: {
       enabled: true,
       defaultState: /** @type {import('../shared/types').ControlState} */ ({}),
