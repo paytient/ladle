@@ -193,7 +193,6 @@ const App = () => {
 
   return (
     <Context.Provider value={{ globalState, dispatch }}>
-      <div className="ladle-selected-package">{globalState.package}</div>
       <main className="ladle-main">
         {stories.length > 0 ? (
           <StoryCheck

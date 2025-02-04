@@ -14,7 +14,7 @@ const getStoryList = (entryData) => {
   let storyLocs = {};
 
   Object.keys(entryData).forEach((entry) => {
-    const packageName = entryData[entry].entry.split("/")[0];
+    const packageName = entryData[entry].entry.split("/")[1];
 
     entryData[entry].stories.forEach(({ storyId, locStart, locEnd }) => {
       storyIds.push(storyId);

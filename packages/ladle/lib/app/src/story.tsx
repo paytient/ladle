@@ -2,10 +2,11 @@ import * as React from "react";
 import { MDXProvider } from "@mdx-js/react";
 import SynchronizeHead from "./synchronize-head";
 import ErrorBoundary from "./error-boundary";
-import { stories, Provider } from "virtual:generated-list";
+import * as VGeneratedList from "virtual:generated-list";
 import { Ring } from "./icons";
 import type { GlobalState, GlobalAction } from "../../shared/types";
 import { ActionType } from "../../shared/types";
+import { sanitizeAndPascalCase } from "./package-name";
 import config from "./get-config";
 import StoryNotFound from "./story-not-found";
 import { ModeState } from "../../shared/types";
@@ -47,12 +48,14 @@ const Story = ({
   globalState: GlobalState;
   dispatch: React.Dispatch<GlobalAction>;
 }) => {
-  const storyData = stories[globalState.story];
+  const storyData = VGeneratedList.stories[globalState.story];
   const width = globalState.width;
   const storyDataMeta = storyData?.meta?.meta;
   const hotkeys = storyDataMeta ? storyDataMeta.hotkeys : true;
   const mockDate = storyDataMeta ? storyDataMeta.mockDate : undefined;
-
+  const packageName = sanitizeAndPascalCase(globalState.package);
+  const Provider =
+    VGeneratedList[`${packageName}Provider`] || VGeneratedList["Provider"];
   const iframeActive: boolean =
     storyData && storyDataMeta ? storyDataMeta.iframed : false;
   let metaWidth = storyData && storyDataMeta ? storyDataMeta.width : 0;
