@@ -45,6 +45,7 @@ export const getSingleEntry = async (entry) => {
     exportDefaultProps: { title: undefined, meta: undefined },
     namedExportToMeta: {},
     namedExportToStoryName: {},
+    packageName: entry.split("/")[1],
     storyParams: {},
     //@ts-ignore
     storySource: code.replace(/\r/g, ""),

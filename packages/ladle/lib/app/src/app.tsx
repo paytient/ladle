@@ -189,7 +189,6 @@ const App = () => {
       </Context.Provider>
     );
   }
-  console.log("stories: ", stories);
 
   return (
     <Context.Provider value={{ globalState, dispatch }}>

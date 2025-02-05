@@ -27,8 +27,6 @@ export const Button = ({ globalState, dispatch }: AddonProps) => {
   const openPackages = () => {
     setShowPackages(!showPackages);
   };
-  console.log("globalState: ", globalState);
-  console.log("config.addons.packages: ", config.addons.packages);
 
   const handlePackage = (pName: string) => {
     dispatch({ type: ActionType.UpdatePackage, value: pName });
@@ -62,7 +60,13 @@ export const Button = ({ globalState, dispatch }: AddonProps) => {
         >
           <div className="ladle-packages-list">
             {config.addons.packages?.state?.options?.map((pName) => (
-              <button key={pName} onClick={() => handlePackage(pName)}>
+              <button
+                key={pName}
+                onClick={() => handlePackage(pName)}
+                className={
+                  globalState.package === pName ? "ladle-packages-active" : ""
+                }
+              >
                 {pName}
               </button>
             ))}

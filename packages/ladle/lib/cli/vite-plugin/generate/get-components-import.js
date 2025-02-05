@@ -63,7 +63,6 @@ const generateExports = (configFolder, config) => {
 
     const sourceCode = fs.readFileSync(firstFoundComponentsPath, "utf8");
     const filename = path.basename(firstFoundComponentsPath);
-    console.log("firstFoundComponentsPath; ", firstFoundComponentsPath);
 
     firstFoundComponentsPath && debug(`${pkgPath}/${filename} found.`);
 
@@ -131,7 +130,6 @@ const getComponents = (configFolder, config) => {
     const defaultExports = `${defaultProvider}${defaultStorySourceHeader}${defaultArgs}${defaultArgTypes}`;
     output += exports.join("\n");
     output += defaultExports;
-    console.log("output: ", output);
 
     return output;
   } else {

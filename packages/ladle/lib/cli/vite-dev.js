@@ -16,7 +16,7 @@ import { getMetaJsonObject } from "./vite-plugin/generate/get-meta-json.js";
 import { getEntryData } from "./vite-plugin/parse/get-entry-data.js";
 
 /**
- * @param config {import("../shared/types").Config}
+ * @param config {import("../shared/types.js").Config}
  * @param configFolder {string}
  */
 const bundler = async (config, configFolder) => {

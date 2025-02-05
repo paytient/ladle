@@ -275,6 +275,7 @@ export type StoryEntry = {
 };
 export type ParsedStoriesResult = {
   entry: string;
+  packageName: string;
   stories: StoryEntry[];
   exportDefaultProps: {
     title?: string;

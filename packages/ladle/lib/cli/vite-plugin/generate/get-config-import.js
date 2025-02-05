@@ -15,6 +15,7 @@ const ladleConfigToClientConfig = (config) => {
     ...(config.base ? { base: config.base } : {}),
     ...(config.mode ? { mode: config.mode } : {}),
     ...(config.i18n ? { i18n: config.i18n } : {}),
+    ...(config.packages ? { packages: config.packages } : {}),
     ...(config.storyOrder
       ? {
           storyOrder: Array.isArray(config.storyOrder)

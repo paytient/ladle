@@ -356,30 +356,21 @@ body {
 
 .ladle-packages-list button {
   padding: 10px 20px;
-  background: #e9e6f5;
+  background: var(--ladle-color-secondary);
+  border: 2px solid var(--ladle-color-accent);
   width: 300px;
-  border-width: 0;
   cursor: pointer;
 }
 
-.ladle-selected-package {
-  width: 100vw;
-  padding: 10px;
-  background-color: #276ef1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  text-align: center;
-  color: #fff;
-  text-transform: capitalize;
-  font-family: Arial, Helvetica, sans-serif;
+.ladle-packages-list button.ladle-packages-active {
+  background: var(--ladle-color-accent);
 }
 
-.ladle-packages-list button:hover {
+.ladle-packages-list button:not(.ladle-packages-active):hover {
   background: #d6b5f2;
 }
 
-.ladle-packages-list button:first-child {
+.ladle-packages-list button:not(:last-child) {
   margin-bottom: 5px;
 }
 
