@@ -68,3 +68,11 @@ export const getEncodedStoryName = (fileId, namedExport, packageName) => {
     .toLocaleLowerCase()
     .replace(new RegExp(storyDelimiter, "g"), storyEncodeDelimiter);
 };
+
+/**
+ * @param {string} story
+ */
+export const getPackageNameFromStory = (story) => {
+  if (!story) return "";
+  return story.split("/")[1] || "";
+};

@@ -1,6 +1,10 @@
 import t from "@babel/types";
 import { template, generate } from "../babel.js";
-import { storyDelimiter, storyEncodeDelimiter } from "../naming-utils.js";
+import {
+  storyDelimiter,
+  storyEncodeDelimiter,
+  getPackageNameFromStory,
+} from "../naming-utils.js";
 
 /**
  * @param entryData {import('../../../shared/types').EntryData}
@@ -14,7 +18,7 @@ const getStoryList = (entryData) => {
   let storyLocs = {};
 
   Object.keys(entryData).forEach((entry) => {
-    const packageName = entryData[entry].entry.split("/")[1];
+    const packageName = getPackageNameFromStory(entryData[entry].entry);
 
     entryData[entry].stories.forEach(({ storyId, locStart, locEnd }) => {
       storyIds.push(storyId);
