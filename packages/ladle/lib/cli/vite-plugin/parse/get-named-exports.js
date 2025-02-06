@@ -20,6 +20,7 @@ const getNamedExports = (
     storyParams,
     stories,
     entry,
+    packageName,
   },
   astPath,
 ) => {
@@ -42,7 +43,7 @@ const getNamedExports = (
     const storyName = namedExportToStoryName[namedExport]
       ? namedExportToStoryName[namedExport]
       : namedExport;
-    const storyId = `${kebabCase(
+    const storyId = `${packageName}${storyDelimiter}${storyDelimiter}${storyDelimiter}${kebabCase(
       storyNamespace,
     )}${storyDelimiter}${storyDelimiter}${kebabCase(storyName)}`;
     // attach default meta to each story
@@ -55,9 +56,11 @@ const getNamedExports = (
         meta: namedExportToMeta[namedExport],
       });
     }
+
     const componentName = getEncodedStoryName(
       kebabCase(storyNamespace),
       kebabCase(storyName),
+      packageName,
     );
     const story = {
       storyId,
@@ -65,6 +68,7 @@ const getNamedExports = (
       namedExport,
       locStart: namedExportDeclaration.loc.start.line,
       locEnd: namedExportDeclaration.loc.end.line,
+      packageName,
     };
     return story;
   };

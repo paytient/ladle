@@ -61,9 +61,18 @@ export const getFileId = (filename) => {
 /**
  * @param {string} fileId
  * @param {string} namedExport
+ * @param {string} packageName
  */
-export const getEncodedStoryName = (fileId, namedExport) => {
-  return `${fileId}${storyEncodeDelimiter}${storyEncodeDelimiter}${namedExport}`
+export const getEncodedStoryName = (fileId, namedExport, packageName) => {
+  return `${packageName}${storyEncodeDelimiter}${storyEncodeDelimiter}${storyEncodeDelimiter}${fileId}${storyEncodeDelimiter}${storyEncodeDelimiter}${namedExport}`
     .toLocaleLowerCase()
     .replace(new RegExp(storyDelimiter, "g"), storyEncodeDelimiter);
+};
+
+/**
+ * @param {string} story
+ */
+export const getPackageNameFromStory = (story) => {
+  if (!story) return "";
+  return story.split("/")[1] || "";
 };

@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import debugFactory from "debug";
 import { traverse } from "../babel.js";
-import { getFileId } from "../naming-utils.js";
+import { getFileId, getPackageNameFromStory } from "../naming-utils.js";
 import getAst from "../get-ast.js";
 import getDefaultExport from "./get-default-export.js";
 import getStorynameAndMeta from "./get-storyname-and-meta.js";
@@ -45,6 +45,7 @@ export const getSingleEntry = async (entry) => {
     exportDefaultProps: { title: undefined, meta: undefined },
     namedExportToMeta: {},
     namedExportToStoryName: {},
+    packageName: getPackageNameFromStory(entry),
     storyParams: {},
     //@ts-ignore
     storySource: code.replace(/\r/g, ""),

@@ -345,6 +345,37 @@ body {
   color: var(--ladle-color-accent);
 }
 
+.ladle-addons > ul > li > .packages-active {
+  color: var(--ladle-color-accent);
+}
+
+.ladle-packages-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ladle-packages-list button {
+  padding: 10px 20px;
+  background: var(--ladle-color-secondary);
+  border: 1px solid var(--ladle-color-primary);
+  border-radius: 4px;
+  width: 300px;
+  cursor: pointer;
+}
+
+.ladle-packages-list button.ladle-packages-active {
+  background: var(--ladle-bg-color-primary);
+  color: var(--ladle-color-primary);
+}
+
+.ladle-packages-list button:not(.ladle-packages-active):hover {
+  background: var(--ladle-color-hover);
+}
+
+.ladle-packages-list button:not(:last-child) {
+  margin-bottom: 5px;
+}
+
 .ladle-addons > ul > li > button:focus-visible {
   border: 2px solid var(--ladle-color-accent);
 }

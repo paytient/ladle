@@ -5,7 +5,7 @@ import getBaseViteConfig from "./vite-base.js";
 import openBrowser from "./open-browser.js";
 
 /**
- * @param config {import("../shared/types").Config}
+ * @param config {import("../shared/types.js").Config}
  * @param configFolder {string}
  */
 const vitePreview = async (config, configFolder) => {

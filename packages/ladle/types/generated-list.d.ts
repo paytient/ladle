@@ -22,6 +22,7 @@ declare module "virtual:generated-list" {
       locStart: number;
       locEnd: number;
       component: React.FC;
+      packageName: string;
       meta: any;
     };
   };

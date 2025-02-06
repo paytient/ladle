@@ -5,6 +5,7 @@ import {
   errorMessage,
 } from "virtual:generated-list";
 import Story from "./story";
+import StoryCheck from "./story-check";
 import NoStories from "./no-stories";
 import NoStoriesError from "./no-stories-error";
 import Navigation from "./sidebar/main";
@@ -25,6 +26,7 @@ import { getQuery as getQueryRtl } from "./addons/rtl";
 import { getQuery as getQuerySource } from "./addons/source";
 import { getQuery as getQueryControl } from "./addons/control";
 import { getQuery as getQueryWidth } from "./addons/width";
+import { getQuery as getQueryPackage } from "./addons/packages";
 import { Context } from "./context";
 import {
   getQueryStory,
@@ -32,9 +34,10 @@ import {
   isQueryStorySet,
   sortStories,
 } from "./story-name";
+import { packageToTitle } from "./package-name";
 
-const stories = sortStories(Object.keys(unsortedStories), config.storyOrder);
-debug("Stories found", stories);
+const allStories = sortStories(Object.keys(unsortedStories), config.storyOrder);
+debug("All stories found", allStories);
 
 const getUrlState = (
   search: string,
@@ -49,6 +52,12 @@ const getUrlState = (
   control: getQueryControl(search, globalState ? globalState.control : {}),
   action: [],
   controlInitialized: false,
+  package: getQueryPackage(
+    search,
+    config.addons.packages.enabled && config.addons.packages?.state
+      ? config.addons.packages?.state
+      : undefined,
+  ),
   hotkeys: true,
 });
 
@@ -57,6 +66,19 @@ const App = () => {
   const [globalState, dispatch] = React.useReducer(reducer, initialGlobalState);
   const prevGlobalStateRef = React.useRef<Partial<GlobalState>>({});
   const [search, setSearch] = React.useState("");
+
+  const stories = React.useMemo(() => {
+    if (globalState.package) {
+      const filteredStories: typeof unsortedStories = {};
+      Object.keys(unsortedStories).forEach((story) => {
+        if (unsortedStories[story].packageName === globalState.package) {
+          filteredStories[story] = unsortedStories[story];
+        }
+      });
+      return sortStories(Object.keys(filteredStories), config.storyOrder);
+    }
+    return allStories;
+  }, [globalState.package]);
 
   let customBackground = "";
   if (globalState.control) {
@@ -105,7 +127,7 @@ const App = () => {
     }
     modifyParams(globalState);
     if (globalState.story !== prevGlobalState.story) {
-      document.title = `${storyIdToTitle(globalState.story)} | Ladle`;
+      document.title = `${packageToTitle(globalState.package)}${storyIdToTitle(globalState.story)} | Ladle`;
     }
     if (globalState.theme !== prevGlobalState.theme) {
       document.documentElement.setAttribute("data-theme", globalState.theme);
@@ -167,11 +189,18 @@ const App = () => {
       </Context.Provider>
     );
   }
+
   return (
     <Context.Provider value={{ globalState, dispatch }}>
       <main className="ladle-main">
         {stories.length > 0 ? (
-          <Story globalState={globalState} dispatch={dispatch} />
+          <StoryCheck
+            globalState={globalState}
+            dispatch={dispatch}
+            stories={stories}
+          >
+            <Story globalState={globalState} dispatch={dispatch} />
+          </StoryCheck>
         ) : errorMessage ? (
           <NoStoriesError error={errorMessage} />
         ) : (
