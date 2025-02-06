@@ -367,7 +367,7 @@ body {
 }
 
 .ladle-packages-list button:not(.ladle-packages-active):hover {
-  background: #d6b5f2;
+  background: var(--ladle-bg-color-secondary);
 }
 
 .ladle-packages-list button:not(:last-child) {
