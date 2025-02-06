@@ -44,7 +44,6 @@ const getConfigImport = async (configFolder, config) => {
     // @ts-expect-error: exclude hotkeys
     clientConfig = ladleConfigToClientConfig(fileConfig);
   }
-  console.log("LOG:", { clientConfig });
   merge(clientConfig, ladleConfigToClientConfig(config));
   // @ts-expect-error: don't merge hotkeys
   clientConfig.hotkeys = {
