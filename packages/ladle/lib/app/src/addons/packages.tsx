@@ -14,8 +14,6 @@ export const getQuery = (locationSearch: string, state?: PackagesState) => {
 
   if (state?.options.includes(pkg)) {
     return pkg;
-  } else if (state?.default) {
-    return state.default;
   }
 
   return state?.options?.[0] || "";

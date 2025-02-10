@@ -25,11 +25,7 @@
     "access": "public",
     "provenance": true
   },
-  "files": [
-    "lib",
-    "api",
-    "typings-for-build"
-  ],
+  "files": ["lib", "api", "typings-for-build"],
   "bin": {
     "ladle": "./lib/cli/cli.js"
   },
