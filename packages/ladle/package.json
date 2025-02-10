@@ -20,7 +20,6 @@
     "./meta": "./api/meta.js",
     "./msw-node": "./api/msw-node.js"
   },
-  "packageManager": "yarn@3.6.4",
   "publishConfig": {
     "access": "public",
     "provenance": true
