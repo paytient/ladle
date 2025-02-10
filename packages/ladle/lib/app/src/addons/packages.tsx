@@ -28,6 +28,7 @@ export const Button = ({ globalState, dispatch }: AddonProps) => {
 
   const handlePackage = (pName: string) => {
     dispatch({ type: ActionType.UpdatePackage, value: pName });
+    setShowPackages(false);
   };
 
   useHotkeys(
