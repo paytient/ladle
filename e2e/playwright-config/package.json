@@ -1,0 +1,16 @@
+{
+  "name": "@ladle/playwright-config",
+  "version": "0.2.71",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "echo 'no build'",
+    "lint": "echo 'no lint'",
+    "test": "echo 'no test'"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.49.1"
+  }
+}

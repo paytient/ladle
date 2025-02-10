@@ -20,6 +20,7 @@
     "./meta": "./api/meta.js",
     "./msw-node": "./api/msw-node.js"
   },
+  "packageManager": "pnpm@9.15.1",
   "publishConfig": {
     "access": "public",
     "provenance": true
