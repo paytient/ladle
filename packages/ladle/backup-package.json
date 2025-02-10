@@ -20,16 +20,12 @@
     "./meta": "./api/meta.js",
     "./msw-node": "./api/msw-node.js"
   },
-  "packageManager": "yarn@3.6.4",
+  "packageManager": "pnpm@9.15.1",
   "publishConfig": {
     "access": "public",
     "provenance": true
   },
-  "files": [
-    "lib",
-    "api",
-    "typings-for-build"
-  ],
+  "files": ["lib", "api", "typings-for-build"],
   "bin": {
     "ladle": "./lib/cli/cli.js"
   },

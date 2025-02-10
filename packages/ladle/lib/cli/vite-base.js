@@ -10,6 +10,7 @@ import debug from "./debug.js";
 import mergeViteConfigs from "./merge-vite-configs.js";
 import getUserViteConfig from "./get-user-vite-config.js";
 import mdxPlugin from "./vite-plugin/mdx-plugin.js";
+import { removePackageSegment } from "./vite-plugin/naming-utils.js";
 import copyMswWorker from "./copy-msw-worker.js";
 
 /**
@@ -155,7 +156,7 @@ const getBaseViteConfig = async (ladleConfig, configFolder, viteConfig) => {
         ...(ladleConfig.addons.msw.enabled ? ["msw"] : []),
         ...(ladleConfig.addons.msw.enabled ? ["msw/browser"] : []),
         ...(inladleMonorepo ? [] : ["@ladle/react"]),
-        ...(!!resolve.alias ? [] : ["react-dom/client"]),
+        ...(resolve.alias ? [] : ["react-dom/client"]),
       ],
       entries: [
         path.join(process.cwd(), ".ladle/components.js"),
@@ -170,7 +171,9 @@ const getBaseViteConfig = async (ladleConfig, configFolder, viteConfig) => {
       !hasTSConfigPathPlugin &&
         !process.versions.pnp &&
         tsconfigPaths({
-          root: process.cwd(),
+          root: ladleConfig.addons.packages.enabled
+            ? removePackageSegment(process.cwd())
+            : process.cwd(),
         }),
       ladlePlugin(ladleConfig, configFolder, viteConfig.mode || ""),
       !hasReactPlugin && !hasReactSwcPlugin && react(),

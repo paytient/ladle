@@ -30,11 +30,28 @@ const checkIfNamedExportExists = (namedExport, sourceCode, filename) => {
 };
 
 /**
- * @param {string} originalPath
- * @param {packageName} packageName
+ * Updates the original path to a package path.
+ *
+ * Acceptable original paths:
+ * - "example/route/to/project/.ladle"
+ * - "example/route/to/project/packages/docs/.ladle"
+ *
+ * In both cases, the function returns:
+ * "example/route/to/project/packages/${packageName}"
+ *
+ * @param {string} originalPath - The original path.
+ * @param {string} packageName - The package name to insert.
+ * @returns {string} The updated path.
  */
 const updatePath = (originalPath, packageName) => {
-  return originalPath.replace(/(\/\.ladle)/, `/packages/${packageName}$1`);
+  // This regex captures:
+  //   Group 1: The project root (everything before an optional '/packages/<something>')
+  //   The optional group matches '/packages/<folder>' if present,
+  //   followed by '/.ladle' at the end.
+  return originalPath.replace(
+    /^(.*?)(?:\/packages\/[^/]+)?(\/\.ladle)$/,
+    `$1/packages/${packageName}$2`,
+  );
 };
 
 /**
@@ -42,8 +59,11 @@ const updatePath = (originalPath, packageName) => {
  * @param config {import("../../../shared/types.js").Config}
  */
 const generateExports = (configFolder, config) => {
-  let exports = [];
-  config.addons.packages.state.options.forEach((pkg) => {
+  /**
+   * @type {string[]}
+   */
+  const exports = [];
+  config.addons.packages.state?.options.forEach((pkg) => {
     const pkgPath = updatePath(configFolder, pkg);
 
     const componentsPaths = [

@@ -55,7 +55,9 @@ const Story = ({
   const mockDate = storyDataMeta ? storyDataMeta.mockDate : undefined;
   const packageName = sanitizeAndPascalCase(globalState.package);
   const Provider =
-    VGeneratedList[`${packageName}Provider`] || VGeneratedList["Provider"];
+    (VGeneratedList as VGeneratedList.VGeneratedListType)[
+      `${packageName}Provider`
+    ] || VGeneratedList["Provider"];
   const iframeActive: boolean =
     storyData && storyDataMeta ? storyDataMeta.iframed : false;
   let metaWidth = storyData && storyDataMeta ? storyDataMeta.width : 0;

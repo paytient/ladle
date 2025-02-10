@@ -76,3 +76,17 @@ export const getPackageNameFromStory = (story) => {
   if (!story) return "";
   return story.split("/")[1] || "";
 };
+
+/**
+ * Removes the "/packages/{packageName}" segment from the end of the given path, if present.
+ *
+ * @param {string} originalPath - The original file path.
+ * @returns {string} The path with the "/packages/{packageName}" segment removed.
+ *
+ * @example
+ * // returns "/Path/to/repo-name"
+ * removePackageSegment("/Path/to/repo-name/packages/ui");
+ */
+export const removePackageSegment = (originalPath) => {
+  return originalPath.replace(/\/packages\/[^/]+$/, "");
+};

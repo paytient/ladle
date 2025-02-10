@@ -46,18 +46,23 @@ export default function composeEnhancers(module: any, storyName: string) {
   return function RenderDecoratedStory() {
     const { globalState } = useLadleContext();
     const packageName = sanitizeAndPascalCase(globalState.package);
-    const args = VGeneratedList[`${packageName}args`] || VGeneratedList["args"];
+    const args =
+      (VGeneratedList as VGeneratedList.VGeneratedListType)[
+        `${packageName}args`
+      ] || VGeneratedList["args"];
     const argTypes =
-      VGeneratedList[`${packageName}argTypes`] || VGeneratedList["argTypes"];
+      (VGeneratedList as VGeneratedList.VGeneratedListType)[
+        `${packageName}argTypes`
+      ] || VGeneratedList["argTypes"];
     const propsForPackage = {
       ...props,
       args: {
-        ...args,
         ...props.args,
+        ...args,
       },
       argTypes: {
-        ...argTypes,
         ...props.argTypes,
+        ...argTypes,
       },
     };
     const WithArgs = React.useMemo(
